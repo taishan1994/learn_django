@@ -1,0 +1,23 @@
+<body>
+<div align="center" style="border: 1px solid blueviolet;
+        position:absolute;left:500px;top: 200px;width: 430px;height: 50px;">
+    <p style="text-align: center;font-size: 20px;">对不起！请先登录！还有<span id="sp">3</span>秒跳转到登录界面...</p>
+</div>
+<script>
+    //onload事件会在页面加载完后立即发生
+    onload=function () {
+        //etInterval() 方法可按照指定的周期（以毫秒计）来调用函数或计算表达式。
+        setInterval(go,1000)
+    };
+    var x=2;
+    function go() {
+
+        if (x>=0){
+            document.getElementById("sp").innerText=x;
+        }else {
+            location.href="{% url 'login:login'%}";
+        }
+        x--;
+    }
+</script>
+</body>

@@ -1,0 +1,31 @@
+.header {
+    height: 68px;
+    background-color: fuchsia;;
+}
+.header li{
+    float:left;
+    display: inline;
+    margin-left:10px;
+    line-height: 60px;
+    list-style:none;
+    color:#ffffff;
+    font-size: 28px;
+}
+.content{
+    height:300px;
+}
+
+.footer{
+    height:50px;
+    background-color: thistle;
+}
+
+.footer li{
+    float:left;
+    display: inline;
+    margin-left:10px;
+    line-height: 60px;
+    list-style:none;
+    color:#ffffff;
+    font-size: 28px;
+}

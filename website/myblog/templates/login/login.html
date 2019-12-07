@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>盒老师</title>
+	<meta name="keywords" content="盒老师">
+	<meta name="content" content="盒老师">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <link type="text/css" rel="stylesheet" href="/static/login/css/login.css">
+    <script type="text/javascript" src="/static/login/js/jquery.min.js"></script>
+</head>
+<body class="login_bj" >
+<div class="zhuce_body" style="position:absolute;left:130px;top:300px;">
+    <div class="zhuce_kong login_kuang" >
+    	<div class="zc">
+        	<div class="bj_bai" style="height:330px;">
+            <h3>登录</h3>
+       	  	  <form action="{% url 'login:tologin'%}" method="post">
+                <p style="color: red;margin-top: 0px;">{{errormsg}}</p>
+                <input name="phone" type="text" class="kuang_txt" placeholder="手机号">
+                <input name="password" type="text" class="kuang_txt" placeholder="密码">
+                <div>
+               		<input name="remember" type="checkbox" value="remember" ><span>记住我</span><a href="#" style="float:rigth;">忘记密码</a>
+                </div>
+				<div>
+               		<p>没有账号？<a href="{% url 'login:register'%}">立即注册</a></p>
+                </div>
+                <input style="margin-top:2px;" name="登录" type="submit" class="btn_zhuce" value="登录">
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+    
+</body>
+</html>

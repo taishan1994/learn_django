@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css">
+    <script src="/static/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+    <script src="/static/js/curd.js"></script>
+    <style>
+        .myul li{
+            list-style: none;
+            margin-right: 4px;
+            margin-bottom: 4px;
+            float: left;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+<div style="width: 100%;">
+    <h3 align="center">书籍列表</h3>
+    <table class="table" style="table-layout: fixed;">
+        <div>
+            <div style="float: left">
+                <ul class='myul'>
+                    <li><a onclick="getValues()" href="" class="btn btn-danger input-sm">批量删除</a></li>
+                    <li><a href="{% url 'person:curdadd'%}" class="btn btn-info input-sm">添加</a></li>
+                </ul>
+            </div>
+            <div style="float: right">
+                <form  method="get" action="" >
+                    <input type="text" name="query"/>
+                    <input type="submit" value="查询" name="submit" class="btn btn-primary input-sm"/>
+                </form>
+            </div>
+        </div>
+        <tr>
+            <th width="25"><input type="checkbox" id="checkAll"  onclick="checkAll()"></th>
+            <th>id</th>
+            <th>title</th>
+            <th>publisher</th>
+            <th>introduce</th>
+            <th>操作</th>
+        </tr>
+        <tr>
+        {% for item in page%}
+            <td><input type="checkbox" onclick="checkOne()" value="{{item.id}}" name="item"></td>
+            <td>{{item.id}}</td>
+            <td>{{item.title}}</td>
+            <td>{{item.publisher}}</td>
+            <td>{{item.introduce}}</td>
+            <td><a onclick="return confirm('确认要删除？')"  class="btn btn-danger input-sm"
+                    href="/curd/delete/?did={{item.id}}">删除</a>
+                <a onclick=""  class="btn btn-info input-sm"
+                    href="{% url 'person:curdedit'%}?eid={{item.id}}">编辑</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+<!--底部分页按钮显示-->
+<div style="position: absolute;top: 30  %;left: 44%">
+    <nav aria-label="Page navigation">
+        <div class="pagination">
+            <ul class="pagination" >
+            {% if page.has_previous %}
+                <li><a href="/curd/{{page.previous_page_number}}?query={{query}}"   aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span></a></li>
+            {% endif %}
+
+            {% for num in page.paginator.page_range%}
+                {%if pindex == page.number%}
+                    <li><a href="">{{ num }}</a></li>
+                {%else%}
+                    <li><a href="/curd/{{num}}?query={{query}}">{{ num }}</a></li>
+                {%endif%}
+            {% endfor %}
+
+            {% if page.has_next %}
+                 <li><a href="{% url 'person:curdindex' page.next_page_number%}?query={{query}}" aria-label="Next">
+                      <span aria-hidden="true">&raquo;</span></a></li>
+            {% endif %}
+            </ul>
+        </div>
+    </nav>
+</div>
+</body>
+</html>

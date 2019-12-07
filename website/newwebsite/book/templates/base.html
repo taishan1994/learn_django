@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+    <style>
+        /*.custom-textinput{
+            border: 5px solid blue;
+            border-radius: 5px;
+        }*/
+    </style>
+    <link rel="stylesheet" href={% static 'css/index.css' %}
+
+</head>
+<body>
+    <!--{% include 'header.html'%}-->
+    <div class="content">
+        <!--<h1>这是主界面</h1>-->
+        <form action="" method="post">
+            <table>
+                <!--as_p,as_ul-->
+                <!--{{forms.as_table}}-->
+                <hr>
+                <ul>
+                    <li style="list-style-type: none">
+                        <span style="color: blue">{{forms.name.label}} : </span>
+                        <span>{{forms.name}}</span>
+                    </li>
+                    <li style="list-style-type: none">
+                        <span style="color: blue">{{forms.age.label}} : </span>
+                        <span>{{forms.age}}</span>
+                    </li>
+                     <li style="list-style-type: none">
+                        <span style="color: blue">{{forms.gender.label}} : </span>
+                        <span>{{forms.gender}}</span>
+                    </li>
+                     <li style="list-style-type: none">
+                        <span style="color: blue">{{forms.introduce.label}} : </span>
+                        <span>{{forms.introduce}}</span>
+                    </li>
+                </ul>
+                <hr>
+                <tr>
+                    <td><input type="submit" value="submit" name="submit"></td>
+                </tr>
+            </table>
+        </form>
+        {% block content %}
+        {% endblock %}
+    </div>
+    <!--{% include 'footer.html'%}-->
+</body>
+</html>

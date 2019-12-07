@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        li{
+            float: left;
+            list-style: none;
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <div style="position: absolute;top: 35%;left: 40%;">
+        <table border="1">
+            <thread>
+                <tr>
+                    <th>id</th>
+                    <th>title</th>
+                </tr>
+            </thread>
+            <tbody>
+            {% for item in page %}
+                <tr>
+                    <td width="120px">{{item.id}}</td>
+                    <td width="120px">{{item.title}}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+<!--底部分页按钮显示-->
+<div style="position: absolute;top: 50%;left: 44%"
+    <nav aria-label="Page navigation">
+        <div class="pagination">
+            <ul class="pagination" >
+            {% if page.has_previous %}
+                <li><a href="/test/{{page.previous_page_number}}"   aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span></a></li>
+            {% endif %}
+
+            {% for num in page.paginator.page_range%}
+                {%if pindex == page.number%}
+                    <li><a href="">{{ num }}</a></li>
+                {%else%}
+                    <li><a href="/test/{{num}}">{{ num }}</a></li>
+                {%endif%}
+             {% endfor %}
+
+             {% if page.has_next %}
+                 <li><a href="{% url 'person:test' page.next_page_number %}" aria-label="Next">
+                      <span aria-hidden="true">&raquo;</span></a></li>
+              {% endif %}
+            </ul>
+        </div>
+    </nav>
+</div>
+</body>
+</html>
